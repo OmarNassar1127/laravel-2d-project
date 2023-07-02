@@ -34,6 +34,13 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function isAdmin(){
+        if($this->role->name == 'admin') {
+            return true;
+        } 
+        return false;
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
