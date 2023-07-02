@@ -32,6 +32,20 @@
             @endif
 
             <div class="max-w-7xl mx-auto p-6 lg:p-8">
+                @if (auth()->check())
+                    <div>
+                        <H1 style="color:white;">You are already logged in, go to the dashboard to log out</H1>
+                        <form method="POST" action="{{ route('logout') }}" class="inline">
+                            @csrf
+        
+                            <button type="submit" style="color:white" class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-2">
+                                Log Out
+                            </button>
+                            
+                        </form>
+                    </div>
+                @else
+                    
                 <x-guest-layout>
                     <x-authentication-card>
                         <x-slot name="logo">
@@ -80,6 +94,7 @@
                         </form>
                     </x-authentication-card>
                 </x-guest-layout>
+                @endif
                 
                 {{-- <div class="flex justify-center">
                     <svg viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto bg-gray-100 dark:bg-gray-900">
